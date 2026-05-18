@@ -30,28 +30,42 @@
 
     /* Header */
     .header {
-      background: linear-gradient(180deg, #00C853 0%, #00A844 100%);
+      background: #0A0B3B;
       padding: 20px 24px 40px;
       text-align: center;
       border-radius: 0 0 32px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header > *:not(.background_cash) {
+      position: relative;
+      z-index: 1;
+    }
+
+    .background_cash {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.5;
+      z-index: 0;
+      pointer-events: none;
     }
 
     .logo {
+      justify-content: center;
       display: flex;
       align-items: center;
       gap: 6px;
       margin-bottom: 24px;
     }
-
-    .logo svg {
-      width: 32px;
-      height: 32px;
-    }
-
-    .logo span {
-      color: #fff;
-      font-size: 18px;
-      font-weight: 600;
+    .logo {
+      img{
+        max-width: 118px;
+      }
     }
 
     .header h1 {
@@ -79,6 +93,8 @@
       border-radius: 20px;
       letter-spacing: 0.5px;
       margin-bottom: 12px;
+      backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     }
 
     .amount {
@@ -101,7 +117,7 @@
 
     /* Link Section */
     .link-section {
-      padding: 24px;
+      padding: 24px 5px;
       margin-top: -20px;
     }
 
@@ -123,6 +139,7 @@
       display: flex;
       gap: 8px;
       margin-bottom: 16px;
+      flex-wrap: wrap;
     }
 
     .link-input {
@@ -161,8 +178,8 @@
 
     .copy-btn.copied {
       background: #E8F5E9;
-      border-color: #00C853;
-      color: #00C853;
+      border-color: #16A34A;
+      color: #16A34A;
     }
 
     .share-btn {
@@ -171,7 +188,7 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      background: #25D366;
+      background: #16A34A;
       color: #fff;
       border: none;
       border-radius: 12px;
@@ -196,7 +213,7 @@
     .both-win-title {
       font-size: 24px;
       font-weight: 700;
-      color: #00C853;
+      color: #16A34A;
       margin-bottom: 24px;
       font-style: italic;
     }
@@ -223,7 +240,7 @@
     .win-card-amount {
       font-size: 36px;
       font-weight: 700;
-      color: #00C853;
+      color: #16A34A;
     }
 
     .win-card-desc {
@@ -253,7 +270,7 @@
 
     .section-subtitle {
       font-size: 16px;
-      color: #00C853;
+      color: #16A34A;
       font-style: italic;
     }
 
@@ -272,7 +289,7 @@
     .step-number {
       width: 32px;
       height: 32px;
-      background: #00C853;
+      background: #16A34A;
       color: #fff;
       border-radius: 50%;
       display: flex;
@@ -331,7 +348,7 @@
     }
 
     .message-text .highlight {
-      color: #00C853;
+      color: #16A34A;
       font-weight: 500;
     }
 
@@ -346,7 +363,7 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      background: #00C853;
+      background: #16A34A;
       color: #fff;
       border: none;
       border-radius: 12px;
@@ -447,7 +464,7 @@
     .when-check svg {
       width: 14px;
       height: 14px;
-      color: #00C853;
+      color: #16A34A;
     }
 
     .when-item span {
@@ -551,7 +568,7 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      background: #25D366;
+      background: #16A34A;
       color: #fff;
       border: none;
       border-radius: 12px;
@@ -686,16 +703,13 @@
     <!-- Header -->
     <header class="header">
       <div class="logo">
-        <svg viewBox="0 0 32 32" fill="none">
-          <circle cx="16" cy="16" r="14" fill="#fff"/>
-          <path d="M10 16.5L14 20.5L22 12.5" stroke="#00C853" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>propaga.</span>
+        <img src="./assets/Logo_propaga.png" alt="">
       </div>
       <h1>Tu invitación<br><span class="gradient">vale mucho</span></h1>
       <div class="badge">GANA EN EFECTIVO</div>
       <div class="amount">$250<span class="cents">.00</span></div>
       <p class="amount-label">Por cada referido</p>
+      <img class="background_cash" src="./assets/billete_background.png" alt="">      
     </header>
 
     <!-- Link Section -->
@@ -811,7 +825,7 @@
     <!-- No Responsibility -->
     <section class="no-responsibility animate-scale">
       <div class="no-responsibility-icon">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="#00C853">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="#16A34A">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
         </svg>
       </div>
@@ -827,7 +841,7 @@
         <div class="when-list stagger">
           <div class="when-item animate">
             <div class="when-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
             </div>
@@ -835,7 +849,7 @@
           </div>
           <div class="when-item animate">
             <div class="when-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
             </div>
@@ -843,7 +857,7 @@
           </div>
           <div class="when-item animate">
             <div class="when-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
             </div>
@@ -851,7 +865,7 @@
           </div>
           <div class="when-item animate">
             <div class="when-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
             </div>
