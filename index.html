@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propaga - Tu invitación vale mucho</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+      padding-bottom: 100px;
+    }
+
+    .container {
+      max-width: 430px;
+      margin: 0 auto;
+      background: #fff;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(180deg, #00C853 0%, #00A844 100%);
+      padding: 20px 24px 40px;
+      text-align: center;
+      border-radius: 0 0 32px 32px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+
+    .logo svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .logo span {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .header h1 {
+      color: #fff;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .header h1 .gradient {
+      background: linear-gradient(90deg, #B8FF7A 0%, #7AFFB8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .amount {
+      color: #fff;
+      font-size: 64px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .amount .cents {
+      font-size: 32px;
+      vertical-align: super;
+    }
+
+    .amount-label {
+      color: rgba(255,255,255,0.9);
+      font-size: 16px;
+      margin-top: 4px;
+    }
+
+    /* Link Section */
+    .link-section {
+      padding: 24px;
+      margin-top: -20px;
+    }
+
+    .link-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .link-label {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .link-input-wrapper {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .link-input {
+      flex: 1;
+      background: #f5f5f5;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 14px;
+      color: #333;
+      font-family: inherit;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .copy-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: #f5f5f5;
+    }
+
+    .copy-btn.copied {
+      background: #E8F5E9;
+      border-color: #00C853;
+      color: #00C853;
+    }
+
+    .share-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+
+    .share-btn:hover {
+      background: #20BD5A;
+    }
+
+    /* Both Win Section */
+    .both-win {
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .both-win-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #00C853;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .both-win-cards {
+      display: flex;
+      gap: 16px;
+    }
+
+    .win-card {
+      flex: 1;
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .win-card-label {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .win-card-amount {
+      font-size: 36px;
+      font-weight: 700;
+      color: #00C853;
+    }
+
+    .win-card-desc {
+      font-size: 12px;
+      color: #999;
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    /* How it Works */
+    .how-it-works {
+      padding: 32px 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .section-subtitle {
+      font-size: 16px;
+      color: #00C853;
+      font-style: italic;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      width: 32px;
+      height: 32px;
+      background: #00C853;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .step-content h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.4;
+    }
+
+    /* Message Section */
+    .message-section {
+      padding: 32px 24px;
+      background: #f9f9f9;
+    }
+
+    .message-section h2 {
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .message-section > p {
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .message-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .message-text {
+      font-size: 14px;
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .message-text .highlight {
+      color: #00C853;
+      font-weight: 500;
+    }
+
+    .message-link {
+      color: #2196F3;
+      word-break: break-all;
+    }
+
+    .message-share-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #00C853;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+
+    .message-share-btn:hover {
+      background: #00A844;
+    }
+
+    /* No Responsibility */
+    .no-responsibility {
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .no-responsibility-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .no-responsibility h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .no-responsibility p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .no-responsibility p strong {
+      color: #1a1a1a;
+    }
+
+    /* When Section */
+    .when-section {
+      padding: 32px 24px;
+      background: #f9f9f9;
+    }
+
+    .when-section h2 {
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .when-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .when-card > p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 16px;
+    }
+
+    .when-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .when-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .when-check {
+      width: 24px;
+      height: 24px;
+      background: #E8F5E9;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .when-check svg {
+      width: 14px;
+      height: 14px;
+      color: #00C853;
+    }
+
+    .when-item span {
+      font-size: 14px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 32px 24px;
+    }
+
+    .faq h2 {
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      background: none;
+      border: none;
+      font-size: 15px;
+      font-weight: 500;
+      color: #1a1a1a;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: left;
+    }
+
+    .faq-question svg {
+      transition: transform 0.3s;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
+
+    .faq-item.open .faq-question svg {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+    }
+
+    .faq-answer p {
+      padding-bottom: 16px;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* Terms */
+    .terms {
+      padding: 16px 24px 32px;
+      text-align: center;
+    }
+
+    .terms a {
+      font-size: 12px;
+      color: #999;
+      text-decoration: underline;
+    }
+
+    /* Fixed Footer */
+    .fixed-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      padding: 16px 24px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+
+    .fixed-footer .container {
+      min-height: auto;
+    }
+
+    .footer-share-btn {
+      width: 100%;
+      max-width: 430px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+
+    .footer-share-btn:hover {
+      background: #20BD5A;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #333;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 200;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Animations */
+    .animate {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .animate-fade {
+      opacity: 0;
+      transition: opacity 0.8s ease-out;
+    }
+
+    .animate-fade.visible {
+      opacity: 1;
+    }
+
+    .animate-scale {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .animate-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .animate-left {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .animate-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .animate-right {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .animate-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Staggered delays for children */
+    .stagger > *:nth-child(1) { transition-delay: 0s; }
+    .stagger > *:nth-child(2) { transition-delay: 0.1s; }
+    .stagger > *:nth-child(3) { transition-delay: 0.2s; }
+    .stagger > *:nth-child(4) { transition-delay: 0.3s; }
+    .stagger > *:nth-child(5) { transition-delay: 0.4s; }
+
+    /* Header animation (always visible, special treatment) */
+    .header {
+      animation: headerSlideDown 0.8s ease-out;
+    }
+
+    @keyframes headerSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .link-card {
+      animation: cardPopIn 0.6s ease-out 0.3s both;
+    }
+
+    @keyframes cardPopIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <svg viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="14" fill="#fff"/>
+          <path d="M10 16.5L14 20.5L22 12.5" stroke="#00C853" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>propaga.</span>
+      </div>
+      <h1>Tu invitación<br><span class="gradient">vale mucho</span></h1>
+      <div class="badge">GANA EN EFECTIVO</div>
+      <div class="amount">$250<span class="cents">.00</span></div>
+      <p class="amount-label">Por cada referido</p>
+    </header>
+
+    <!-- Link Section -->
+    <section class="link-section">
+      <div class="link-card">
+        <p class="link-label">Tu enlace:</p>
+        <div class="link-input-wrapper">
+          <input type="text" class="link-input" id="linkInput" readonly>
+          <button class="copy-btn" id="copyBtn" onclick="copyLink()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copiar</span>
+          </button>
+        </div>
+        <button class="share-btn" onclick="shareWhatsApp()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Compartir por WhatsApp
+        </button>
+      </div>
+    </section>
+
+    <!-- Both Win -->
+    <section class="both-win animate">
+      <h2 class="both-win-title">¡Ganan los dos!</h2>
+      <div class="both-win-cards stagger">
+        <div class="win-card animate-left">
+          <p class="win-card-label">Tú ganas</p>
+          <p class="win-card-amount">$250</p>
+          <p class="win-card-desc">en efectivo por cada<br>negocio que pague su<br>primer crédito.</p>
+        </div>
+        <div class="win-card animate-right">
+          <p class="win-card-label">Tu amigo</p>
+          <p class="win-card-amount">$250</p>
+          <p class="win-card-desc">de descuento en su<br>primer crédito.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="how-it-works animate">
+      <div class="section-header">
+        <h2 class="section-title">¿Cómo funciona?</h2>
+        <span class="section-subtitle">es muy fácil</span>
+      </div>
+      <div class="steps stagger">
+        <div class="step animate">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Comparte tu código</h3>
+            <p>Mándalo por WhatsApp</p>
+          </div>
+        </div>
+        <div class="step animate">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Tu amig@ se registra</h3>
+            <p>Debe usar tu enlace o código al solicitar su crédito Propaga</p>
+          </div>
+        </div>
+        <div class="step animate">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Crédito aprobado</h3>
+            <p>Tu amig@ recibe su crédito y su descuento.</p>
+          </div>
+        </div>
+        <div class="step animate">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Paga su primer crédito</h3>
+            <p>Cuando paga su primer crédito, a ti se te acreditan $250 en efectivo.</p>
+          </div>
+        </div>
+        <div class="step animate">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <h3>¡Recibes tu dinero!</h3>
+            <p>Te depositamos tus $250 directo a tu cuenta.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Message Section -->
+    <section class="message-section animate">
+      <h2>Manda este mensaje</h2>
+      <p>Ya lo tenemos listo para ti, solo dale compartir.</p>
+      <div class="message-card">
+        <div class="message-text" id="messageText">
+          Hola 👋<br><br>
+          Te comparto mi invitación a Propaga, una opción de crédito en efectivo para tu negocio, todo desde tu celular.<br><br>
+          Si completas tu proceso exitosamente, recibes <span class="highlight">$250 de descuento</span> en tu siguiente crédito.<br><br>
+          Te dejo mi enlace:<br>
+          <span class="message-link" id="messageLink"></span>
+        </div>
+        <button class="message-share-btn" onclick="shareMessage()">
+          Compartir
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- No Responsibility -->
+    <section class="no-responsibility animate-scale">
+      <div class="no-responsibility-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="#00C853">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      </div>
+      <h2>Cero responsabilidades</h2>
+      <p>No te preocupes, <strong>tú no eres aval de nadie</strong>. Si tu amigo se atrasa con sus pagos, a ti no te afecta en nada. Tu único trabajo es recomendar.</p>
+    </section>
+
+    <!-- When Section -->
+    <section class="when-section animate">
+      <h2>¿Cuándo recibo mis $250?</h2>
+      <div class="when-card">
+        <p>Te depositamos tu recompensa cuando se cumpla lo siguiente:</p>
+        <div class="when-list stagger">
+          <div class="when-item animate">
+            <div class="when-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <span>Tu referido usa tu código al registrarse.</span>
+          </div>
+          <div class="when-item animate">
+            <div class="when-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <span>Propaga le aprueba su línea de crédito.</span>
+          </div>
+          <div class="when-item animate">
+            <div class="when-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <span>Solicita su primer crédito.</span>
+          </div>
+          <div class="when-item animate">
+            <div class="when-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <span>Paga su primer crédito.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq animate">
+      <h2>Dudas frecuentes</h2>
+      <div class="faq-item animate">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿A cuántas personas puedo invitar?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>¡No hay límite! Puedes invitar a todas las personas que quieras y ganar $250 por cada una que complete el proceso.</p>
+        </div>
+      </div>
+      <div class="faq-item animate">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿Dónde me depositan mis ganancias?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>Te depositamos directamente a la cuenta bancaria que tienes registrada en Propaga.</p>
+        </div>
+      </div>
+      <div class="faq-item animate">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿Qué pasa si mi amigo no uso mi código?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>Es importante que tu amigo use tu enlace o código al momento de registrarse. Si no lo usa, no podremos acreditarte la recompensa.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Terms -->
+    <div class="terms">
+      <a href="#">Aplican Términos y Condiciones del Programa de Referidos Propaga.</a>
+    </div>
+  </div>
+
+  <!-- Fixed Footer -->
+  <div class="fixed-footer">
+    <button class="footer-share-btn" onclick="shareWhatsApp()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Compartir por WhatsApp
+    </button>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">Enlace copiado</div>
+
+  <script>
+    // Get codigo from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const codigo = urlParams.get('codigo') || 'TUCÓDIGO';
+    const referralLink = `registro.propaga.mx/r/${codigo}`;
+    const fullLink = `https://${referralLink}`;
+
+    // Set link in inputs
+    document.getElementById('linkInput').value = referralLink;
+    document.getElementById('messageLink').textContent = fullLink;
+
+    // Share message text
+    const shareText = `Hola 👋
+
+Te comparto mi invitación a Propaga, una opción de crédito en efectivo para tu negocio, todo desde tu celular.
+
+Si completas tu proceso exitosamente, recibes $250 de descuento en tu siguiente crédito.
+
+Te dejo mi enlace:
+${fullLink}`;
+
+    // Copy link function
+    function copyLink() {
+      const copyBtn = document.getElementById('copyBtn');
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(fullLink).then(() => {
+          showCopied();
+        }).catch(() => {
+          fallbackCopy();
+        });
+      } else {
+        fallbackCopy();
+      }
+    }
+
+    function fallbackCopy() {
+      const input = document.getElementById('linkInput');
+      input.value = fullLink;
+      input.select();
+      input.setSelectionRange(0, 99999);
+
+      try {
+        document.execCommand('copy');
+        showCopied();
+      } catch (err) {
+        showToast('Error al copiar');
+      }
+
+      input.value = referralLink;
+    }
+
+    function showCopied() {
+      const copyBtn = document.getElementById('copyBtn');
+      copyBtn.classList.add('copied');
+      copyBtn.querySelector('span').textContent = '¡Copiado!';
+      showToast('Enlace copiado');
+
+      setTimeout(() => {
+        copyBtn.classList.remove('copied');
+        copyBtn.querySelector('span').textContent = 'Copiar';
+      }, 2000);
+    }
+
+    // Share WhatsApp function
+    function shareWhatsApp() {
+      const waText = encodeURIComponent(shareText);
+
+      if (navigator.share) {
+        navigator.share({
+          title: 'Propaga - Invitación',
+          text: shareText,
+          url: fullLink
+        }).catch(() => {
+          // Fallback to WhatsApp
+          window.open(`https://wa.me/?text=${waText}`, '_blank');
+        });
+      } else {
+        window.open(`https://wa.me/?text=${waText}`, '_blank');
+      }
+    }
+
+    // Share message function
+    function shareMessage() {
+      const waText = encodeURIComponent(shareText);
+
+      if (navigator.share) {
+        navigator.share({
+          title: 'Propaga - Invitación',
+          text: shareText
+        }).catch(() => {
+          window.open(`https://wa.me/?text=${waText}`, '_blank');
+        });
+      } else {
+        window.open(`https://wa.me/?text=${waText}`, '_blank');
+      }
+    }
+
+    // FAQ toggle
+    function toggleFaq(button) {
+      const item = button.parentElement;
+      item.classList.toggle('open');
+    }
+
+    // Toast function
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
+    }
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          // Add staggered delay for items inside stagger containers
+          const parent = entry.target.parentElement;
+          if (parent && parent.classList.contains('stagger')) {
+            const siblings = Array.from(parent.children);
+            const itemIndex = siblings.indexOf(entry.target);
+            entry.target.style.transitionDelay = `${itemIndex * 0.1}s`;
+          }
+
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all animated elements
+    document.addEventListener('DOMContentLoaded', () => {
+      const animatedElements = document.querySelectorAll('.animate, .animate-fade, .animate-scale, .animate-left, .animate-right');
+      animatedElements.forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
